@@ -29,7 +29,7 @@ def preprocess_data(input_csv: str, output_csv: str):
   df = df.dropna(subset=["standardized_smiles"])
 
   df.to_csv(output_csv, index=False)
-  print(f"Data has been preprocessed and saved to {output.csv}")
+  print(f"Data has been preprocessed and saved to {output_csv}")
 
 if __name__ == "__main__":
   preprocess_data("data/raw/egfr_bioactivity_full.csv", "data/processed/egfr_cleaned.csv")
