@@ -79,10 +79,17 @@ top_n = 50
 substructure_df_top = substructure_df.sort_values(by="Active Count", ascending=False).head(top_n)
 
 #create a heatmap
-plt.figure(figsize=(12,8))
-sns.heatmap(substructure_df_top[["Active Count", "Inactive Count"]].T, annot=True, fmt="d", cmap="coolwarm", xticklabels=substructure_df_top["Bit Index"])
-plt.title(f"Substructure Frequency in Active vs Inactive Compounds (Top {top_n})")
-plt.xlabel("Bit Index")
-plt.ylabel("Count")
-plt.savefig("data/processed/substructure_heatmap_all.png")
+plt.figure(figsize=(14,10))
+sns.heatmap(substructure_df_top[["Active Count", "Inactive Count"]].T,
+  cmap="coolwarm",
+  xticklabels=substructure_df_top["Bit Index"],
+  cbar_kws={'label': 'Frequency'},
+  linewidths=0.5,
+  linecolor="gray")
+plt.title(f"Substructure Frequency in Active vs. Inactive Compounds (Top {top_n})", fontsize=14)
+plt.xlabel("Bit Index", fontsize=12)
+plt.ylabel("Count", fontsize=12)
+#Trying to improve visibility
+plt.xticks(rotation=45, ha="right", fontsize=10)
+plt.savefig("data/processed/substructure_heatmap_all.png", bbox_inches="tight")
 plt.show()
